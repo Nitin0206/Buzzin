@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp Clone</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.4/dist/index.min.js"></script>
+</head>
+
+<body>
+    <div class="toggle-theme">
+        <button id="toggleTheme">🌙</button>
+        <button class="call-btn" id="callBtn">📞</button>
+
+        <audio id="ringtone" src="https://actions.google.com/sounds/v1/alarms/phone_alerts_and_rings.ogg"
+            preload="auto"></audio>
+
+        <div class="call-modal" id="callModal">
+            <div class="call-content">
+                <div class="ringing-animation">🔔 Ringing...</div>
+                <p>Calling <span id="callingUser"></span> 📞</p>
+                <button id="endCall">End Call</button>
+            </div>
+        </div>
+
+        <div class="incoming-call" id="incomingCall">
+            <div class="call-content">
+                <div class="ringing-animation">Incoming Call</div>
+                <p><span id="incomingUser"></span> is calling...</p>
+                <button id="acceptCall">Accept</button>
+                <button id="declineCall">Decline</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h1>BUZZIN'</h1>
+            <h2>Contacts</h2>
+            <input type="text" id="searchInput" placeholder="Search contacts..." />
+            <ul id="contactList">
+                <li class="active" data-name="Aarav">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=John%20DSIns" class="avatar" alt="Aarav" />
+                        <div class="contact-details">
+                            <strong>Aarav</strong>
+                            <span class="last-message" data-last="Aarav"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Aarav"></span>
+                </li>
+                <li data-name="Ragini">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Jane%20Smith" class="avatar" alt="Ragini" />
+                        <div class="contact-details">
+                            <strong>Ragini</strong>
+                            <span class="last-message" data-last="Ragini"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Ragini"></span>
+                </li>
+                <li data-name="Ritesh">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Mark%20Lee" class="avatar" alt="Ritesh" />
+                        <div class="contact-details">
+                            <strong>Ritesh</strong>
+                            <span class="last-message" data-last="Ritesh"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Ritesh"></span>
+                </li>
+                <li data-name="Anjali">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Anjali%20" class="avatar" alt="Anjali" />
+                        <div class="contact-details">
+                            <strong>Anjali</strong>
+                            <span class="last-message" data-last="Anjali"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Anjali"></span>
+                </li>
+                <li data-name="Vihaan">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Robert%20" class="avatar" alt="Vihaan" />
+                        <div class="contact-details">
+                            <strong>Vihaan</strong>
+                            <span class="last-message" data-last="Vihaan"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Vihaan"></span>
+                </li>
+                <li data-name="Aadhira">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Olivia%20Wilson" class="avatar" alt="Aadhira" />
+                        <div class="contact-details">
+                            <strong>Aadhira</strong>
+                            <span class="last-message" data-last="Aadhira"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Aadhira"></span>
+                </li>
+                <li data-name="Jitendra Uncle">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=John%20Uncle" class="avatar" alt="Jitendra Uncle" />
+                        <div class="contact-details">
+                            <strong>Jitendra Uncle</strong>
+                            <span class="last-message" data-last="Jitendra Uncle"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Jitendra Uncle"></span>
+                </li>
+                <li data-name="Priya Sharma">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Sophia%20" class="avatar" alt="Priya Sharma" />
+                        <div class="contact-details">
+                            <strong>Priya Sharma</strong>
+                            <span class="last-message" data-last="Priya Sharma"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Priya Sharma"></span>
+                </li>
+                <li data-name="Aarav Chaudhary">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=William%20John" class="avatar" alt="Aarav Chaudhary" />
+                        <div class="contact-details">
+                            <strong>Aarav Chaudhary</strong>
+                            <span class="last-message" data-last="Aarav Chaudhary"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Aarav Chaudhary"></span>
+                </li>
+                <li data-name="Ritika Verma">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Isabella%20Taylor" class="avatar" alt="Ritika Verma" />
+                        <div class="contact-details">
+                            <strong>Ritika Verma</strong>
+                            <span class="last-message" data-last="Ritika Verma"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Ritika Verma"></span>
+                </li>
+                <li data-name="Ravi Kumar Reddy">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Noah%20Anderson" class="avatar" alt="Ravi Kumar Reddy" />
+                        <div class="contact-details">
+                            <strong>Ravi Kumar Reddy</strong>
+                            <span class="last-message" data-last="Ravi Kumar Reddy"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Ravi Kumar Reddy"></span>
+                </li>
+                <li data-name="Divya Nair">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Emma%20Williams" class="avatar" alt="Divya Nair" />
+                        <div class="contact-details">
+                            <strong>Divya Nair</strong>
+                            <span class="last-message" data-last="Divya Nair"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Divya Nair"></span>
+                </li>
+                <li data-name="Sukhwinder Uncle">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=James%20William" class="avatar" alt="Sukhwinder Uncle" />
+                        <div class="contact-details">
+                            <strong>Sukhwinder Uncle</strong>
+                            <span class="last-message" data-last="Sukhwinder Uncle"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Sukhwinder Uncle"></span>
+                </li>
+                <li data-name="Kajal Mehta">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Benjamin%20Hall" class="avatar" alt="Kajal Mehta" />
+                        <div class="contact-details">
+                            <strong>Kajal Mehta</strong>
+                            <span class="last-message" data-last="Kajal Mehta"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Kajal Mehta"></span>
+                </li>
+                <li data-name="Imran Ansari">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Charlotte%20King" class="avatar" alt="Imran Ansari" />
+                        <div class="contact-details">
+                            <strong>Imran Ansari</strong>
+                            <span class="last-message" data-last="Imran Ansari"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Imran Ansari"></span>
+                </li>
+                <li data-name="Amritpal Sandhu">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Daniel%20Scott" class="avatar" alt="Amritpal Sandhu" />
+                        <div class="contact-details">
+                            <strong>Amritpal Sandhu</strong>
+                            <span class="last-message" data-last="Amritpal Sandhu"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Amritpal Sandhu"></span>
+                </li>
+                <li data-name="Jasleen Chahal">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Grace%20Young" class="avatar" alt="Jasleen Chahal" />
+                        <div class="contact-details">
+                            <strong>Jasleen Chahal</strong>
+                            <span class="last-message" data-last="Jasleen Chahal"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Jasleen Chahal"></span>
+                </li>
+                <li data-name="Neha Malhotra">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Henry%20" class="avatar" alt="Neha Malhotra" />
+                        <div class="contact-details">
+                            <strong>Neha Malhotra</strong>
+                            <span class="last-message" data-last="Neha Malhotra"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Neha Malhotra"></span>
+                </li>
+                <li data-name="Advika">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Ava%20Baker" class="avatar" alt="Advika" />
+                        <div class="contact-details">
+                            <strong>Advika</strong>
+                            <span class="last-message" data-last="Advika"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Advika"></span>
+                </li>
+                <li data-name="Ishita Khanna">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Lucas%20Adams" class="avatar" alt="Ishita Khanna" />
+                        <div class="contact-details">
+                            <strong>Ishita Khanna</strong>
+                            <span class="last-message" data-last="Ishita Khanna"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Ishita Khanna"></span>
+                </li>
+                <li data-name="Charu">
+                    <div class="contact-item">
+                        <img src="https://i.pravatar.cc/150?u=Mia%20adams" class="avatar" alt="Charu" />
+                        <div class="contact-details">
+                            <strong>Charu</strong>
+                            <span class="last-message" data-last="Charu"></span>
+                        </div>
+                    </div>
+                    <span class="unread" data-unread="Charu"></span>
+                </li>
+            </ul>
+            <div class="call-log">
+                <h3>Call Logs</h3>
+                <div class="log-filters">
+                    <button class="filter-btn" data-type="All">All</button>
+                    <button class="filter-btn" data-type="Missed">Missed</button>
+                    <button class="filter-btn" data-type="Received">Received</button>
+                    <button class="filter-btn" data-type="Outgoing">Outgoing</button>
+                </div>
+                <ul id="callLogList"></ul>
+            </div>
+
+
+        </aside>
+
+        <main class="chat-window">
+            <header class="chat-header">Aarav</header>
+            <div id="typingIndicator">User is typing...</div>
+            <div class="messages" id="messageContainer"></div>
+            <footer class="chat-input">
+                <button id="emojiBtn">😊</button>
+                <button id="uploadBtn">📎</button>
+                <input type="text" id="messageInput" placeholder="Type a message" />
+                <button onclick="sendMessage()">Send</button>
+            </footer>
+            <footer style="text-align:center; padding: 6px; font-size:0.7rem; color:rgb(98, 97, 97);">
+  Buzzin' — All copyright reserved. Made by Nitin.
+</footer>
+        </main>
+    </div>
+
+    <input type="file" id="fileInput" accept="image/*" style="display:none;" />
+    <script src="main.js"></script>
+</body>
+
+</html>
